@@ -29,7 +29,7 @@
 
 ---
 
-> **Enjoying the project? Please consider giving it a Star ⭐ on GitHub!**  
+> **Enjoying the project? Please consider giving it a Star ⭐ on GitHub!**<br>
 > Questions, bug reports, hardware test results, and architectural discussions are always welcome — feel free to open an [Issue](https://github.com/ct-jaryn/jaryn-remote/issues) or [Pull Request](https://github.com/ct-jaryn/jaryn-remote/pulls) anytime!
 
 ---

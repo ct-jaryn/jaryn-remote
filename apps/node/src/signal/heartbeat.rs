@@ -123,6 +123,14 @@ pub(crate) async fn send_beacon(shared: &Shared, sock: &UdpSocket, port: u16) {
     let _ = sock.send_to(&pkt, group).await;
     let _ = sock.send_to(&pkt, bcast).await;
     let _ = sock.send_to(&pkt, local).await;
+    // macOS 15 无签名进程在 en0 发组播会被本地网络权限静默拦截，且 BSD 上 127.0.0.1 单播
+    // 只投递给同端口的第一个 SO_REUSEPORT 套接字；显式在 lo0 发一次组播可让同机多节点稳定互见。
+    if let Ok(lo) = Socket::new(Domain::IPV4, Type::DGRAM, Some(Protocol::UDP)) {
+        let _ = lo.set_multicast_if_v4(&Ipv4Addr::LOCALHOST);
+        let _ = lo.set_multicast_loop_v4(true);
+        let std_lo: std::net::UdpSocket = lo.into();
+        let _ = std_lo.send_to(&pkt, group);
+    }
 }
 
 pub(crate) fn bind_beacon(port: u16) -> Result<UdpSocket, String> {
@@ -138,6 +146,7 @@ pub(crate) fn bind_beacon(port: u16) -> Result<UdpSocket, String> {
     socket.set_broadcast(true).ok();
     let group = Ipv4Addr::new(239, 255, 42, 210);
     socket.join_multicast_v4(&group, &Ipv4Addr::UNSPECIFIED).ok();
+    socket.join_multicast_v4(&group, &Ipv4Addr::LOCALHOST).ok();
     socket.set_multicast_loop_v4(true).ok();
     let std_sock: std::net::UdpSocket = socket.into();
     UdpSocket::from_std(std_sock).map_err(|e| e.to_string())
