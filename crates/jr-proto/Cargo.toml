@@ -1,0 +1,9 @@
+[package]
+name = "jr-proto"
+description = "JRP/1 wire protocol codecs, constants, and replay window"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[dependencies]

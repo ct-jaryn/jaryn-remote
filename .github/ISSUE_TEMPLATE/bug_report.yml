@@ -1,0 +1,33 @@
+name: Bug 反馈 (Bug Report)
+description: 报告协议、节点、信令/中继或平台适配器的缺陷
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: component
+    attributes:
+      label: 涉及模块
+      options:
+        - jr-node (桌面/CLI 节点)
+        - jr-host-win (Windows 平台层)
+        - macOS native (av.m / ui.m)
+        - jr-signal / jr-relay (服务端)
+        - jr-proto / jr-crypto / jr-transport / jr-session (核心协议栈)
+        - 文档 / 打包脚本
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: 运行环境
+      description: 操作系统版本、芯片架构（如 macOS 15 arm64 / Windows 11 x64）、Rust 版本
+      placeholder: "Windows 11 24H2 x86_64, rustc 1.85+"
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: 复现步骤与现象
+      description: 请描述最小复现步骤、实际报错/行为与预期行为（请注意脱敏 IP、指纹与令牌）
+    validations:
+      required: true

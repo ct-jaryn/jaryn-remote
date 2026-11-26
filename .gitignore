@@ -1,0 +1,11 @@
+/target
+.DS_Store
+/signal-data
+/node-a
+/node-b
+**/*.sqlite
+**/*.sqlite-*
+**/fleet.token
+**/device.pkcs8
+**/cert.der
+**/key.der

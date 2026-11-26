@@ -1,0 +1,11 @@
+[package]
+name = "jr-crypto"
+description = "Identity signing, X25519 key agreement, AEAD, and signed unattended grants"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[dependencies]
+jr-proto = { path = "../jr-proto" }
+ring = "0.17"

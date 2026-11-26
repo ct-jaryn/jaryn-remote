@@ -1,0 +1,21 @@
+[Unit]
+Description=Jaryn Remote encrypted UDP relay
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=jaryn-remote
+Group=jaryn-remote
+WorkingDirectory=/var/lib/jaryn-remote
+ExecStart=/opt/jaryn-remote/bin/jr-relay --bind 0.0.0.0:47211
+Restart=on-failure
+RestartSec=3
+UMask=0077
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

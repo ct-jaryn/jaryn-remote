@@ -1,0 +1,23 @@
+[Unit]
+Description=Jaryn Remote signaling server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=jaryn-remote
+Group=jaryn-remote
+WorkingDirectory=/var/lib/jaryn-remote
+# 将 203.0.113.10 替换为节点可访问的服务器公网 IPv4 地址
+ExecStart=/opt/jaryn-remote/bin/jr-signal --private --data /var/lib/jaryn-remote/signal --bind 0.0.0.0:47210 --public-host 203.0.113.10 --reflex-port 47213
+Restart=on-failure
+RestartSec=3
+UMask=0077
+NoNewPrivileges=true
+ProtectSystem=strict
+ReadWritePaths=/var/lib/jaryn-remote/signal
+ProtectHome=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,199 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="1296" viewBox="0 0 1200 1296" role="img" aria-labelledby="title desc">
+  <title id="title">Jaryn Remote macOS 客户端设计图：链路台（Link Deck）</title>
+  <desc id="desc">三张界面：设备窗口（左侧舰队定位与服务器状态，右侧本机身份、会话横幅、设备链路、动作与最近动态）、观看窗口（画质、显示器、加密说明与断开）、软件遮挡层（如实写明挡不住截图与录屏）。</desc>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="14" stdDeviation="22" flood-color="#0B1738" flood-opacity=".16"/></filter>
+    <linearGradient id="markj" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#0D9985"/><stop offset="1" stop-color="#0A8FBA"/></linearGradient>
+    <linearGradient id="linkbar" x1="0" y1="1" x2="0" y2="0"><stop stop-color="#0D9985"/><stop offset="1" stop-color="#0A8FBA"/></linearGradient>
+    <symbol id="mark" viewBox="0 0 100 100">
+      <rect x="17" y="32.4" width="50" height="34.4" rx="7" fill="none" stroke="#1D1F23" stroke-opacity=".3" stroke-width="3"/>
+      <rect x="27.9" y="24" width="54.9" height="40.2" rx="7.2" fill="#31C8ED" fill-opacity=".14" stroke="#0A8FBA" stroke-width="3.8"/>
+      <path d="M47.4 37.7H63.5V48.1C63.5 55.1 58.6 58.8 52.2 58.8C48.1 58.8 44.6 57 42.8 54.3" fill="none" stroke="url(#markj)" stroke-width="5.9" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="markStand" viewBox="0 0 100 100">
+      <rect x="17" y="32.4" width="50" height="34.4" rx="7" fill="none" stroke="#1D1F23" stroke-opacity=".3" stroke-width="3"/>
+      <rect x="27.9" y="24" width="54.9" height="40.2" rx="7.2" fill="#31C8ED" fill-opacity=".14" stroke="#0A8FBA" stroke-width="3.8"/>
+      <path d="M47.4 37.7H63.5V48.1C63.5 55.1 58.6 58.8 52.2 58.8C48.1 58.8 44.6 57 42.8 54.3" fill="none" stroke="url(#markj)" stroke-width="5.9" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M55.5 66.4V72.3M45.7 74H65.2" stroke="#1D1F23" stroke-opacity=".3" stroke-width="4" stroke-linecap="round"/>
+    </symbol>
+    <style>
+      text{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Helvetica Neue",sans-serif;fill:#1D1F23}
+      .mono{font-family:ui-monospace,"SF Mono",Menlo,monospace}
+      .muted{fill:#75809A}.faint{fill:#98A2B3}
+      .link{fill:#0A8FBA}.green{fill:#28CD41}.orange{fill:#FF9500}.red{fill:#FF3B30}.white{fill:#fff}
+      .xmicro{font-size:10px}.micro{font-size:11px}.xsmall{font-size:10.5px}.small{font-size:12.5px}.body{font-size:15px}
+      .semibold{font-weight:600}
+      .hair{stroke:#1D1F23;stroke-opacity:.1;stroke-width:1}
+    </style>
+  </defs>
+
+  <rect width="1200" height="1296" fill="#E9EDF4"/>
+
+  <!-- ============ 设备窗口 ============ -->
+  <rect x="28" y="24" width="1144" height="712" rx="18" fill="#FFFFFF" filter="url(#shadow)"/>
+  <clipPath id="win1"><rect x="28" y="24" width="1144" height="712" rx="18"/></clipPath>
+  <g clip-path="url(#win1)">
+    <rect x="28" y="24" width="1144" height="46" fill="#F8F9FB"/>
+    <path d="M28 70H1172" class="hair"/>
+    <circle cx="53" cy="47" r="6" fill="#FF615C"/><circle cx="73" cy="47" r="6" fill="#FFBE2E"/><circle cx="93" cy="47" r="6" fill="#28C840"/>
+    <text x="600" y="52" text-anchor="middle" class="small semibold muted">Jaryn Remote</text>
+
+    <!-- 侧栏：舰队定位 -->
+    <rect x="28" y="70" width="282" height="666" fill="#F5F6F8"/>
+    <path d="M310 70V736" class="hair"/>
+    <use xlink:href="#mark" href="#mark" x="46" y="70" width="30" height="30"/>
+    <text x="90" y="88" class="body semibold">Jaryn Remote</text>
+    <text x="90" y="105" class="xsmall muted">私有链路工作台</text>
+    <path d="M42 126H296" class="hair"/>
+    <rect x="42" y="140" width="254" height="30" rx="8" fill="#FFFFFF" stroke="#1D1F23" stroke-opacity=".12"/>
+    <circle cx="59" cy="153" r="5" fill="none" stroke="#98A2B3" stroke-width="1.8"/><path d="m63 157 4 4" stroke="#98A2B3" stroke-width="1.8" stroke-linecap="round"/>
+    <text x="76" y="159" class="xsmall muted">搜索名称或设备短号</text>
+    <text x="46" y="192" class="micro semibold faint" letter-spacing=".9">可连接</text>
+    <rect x="236" y="172" width="56" height="24" rx="7" fill="#FFFFFF" stroke="#1D1F23" stroke-opacity=".12"/>
+    <text x="264" y="188" text-anchor="middle" class="micro semibold">刷新</text>
+
+    <!-- 选中行：左侧渐变链路条 + 14% 链路色底 -->
+    <rect x="36" y="206" width="266" height="58" rx="10" fill="#31C8ED" fill-opacity=".14"/>
+    <rect x="40" y="218" width="3" height="34" rx="1.5" fill="url(#linkbar)"/>
+    <circle cx="62" cy="228" r="4.6" class="green"/>
+    <circle cx="62" cy="228" r="8" fill="none" stroke="#28CD41" stroke-opacity=".55" stroke-width="1.2"/>
+    <text x="80" y="233" class="small semibold">jaryn</text>
+    <text x="290" y="233" text-anchor="end" class="micro semibold green">在线</text>
+    <text x="80" y="253" class="xsmall mono muted">局域网直连   ·   A1B2 · C3D4</text>
+
+    <!-- 忙：空心环 -->
+    <circle cx="62" cy="286" r="5" fill="none" stroke="#0A8FBA" stroke-width="2"/>
+    <text x="80" y="291" class="small semibold">studio-mac</text>
+    <text x="290" y="291" text-anchor="end" class="micro semibold link">忙</text>
+    <text x="80" y="311" class="xsmall mono muted">广域网   ·   K7G3 · RM28</text>
+
+    <text x="46" y="352" class="micro semibold faint" letter-spacing=".9">其他</text>
+    <!-- 需授权：空心点 + 感叹 -->
+    <circle cx="62" cy="380" r="5" fill="none" stroke="#FF9500" stroke-width="1.4"/>
+    <rect x="60.6" y="376.4" width="2.8" height="5" rx="1.4" class="orange"/>
+    <circle cx="62" cy="385" r="1.7" class="orange"/>
+    <text x="80" y="385" class="small semibold">lab-mini</text>
+    <text x="290" y="385" text-anchor="end" class="micro semibold orange">需授权</text>
+    <text x="80" y="405" class="xsmall mono muted">广域网   ·   9F2C · 71AD</text>
+    <!-- 离线：细空心圈 -->
+    <circle cx="62" cy="446" r="5" fill="none" stroke="#98A2B3" stroke-width="1.2"/>
+    <text x="80" y="451" class="small semibold muted">old-imac</text>
+    <text x="290" y="451" text-anchor="end" class="micro muted">离线</text>
+    <text x="80" y="471" class="xsmall mono muted">广域网   ·   4E80 · B6C9</text>
+
+    <!-- 侧栏底部：本机身份与服务器状态，固定不动 -->
+    <path d="M42 676H296" class="hair"/>
+    <circle cx="52" cy="694" r="4.6" class="green"/>
+    <circle cx="52" cy="694" r="8" fill="none" stroke="#28CD41" stroke-opacity=".55" stroke-width="1.2"/>
+    <text x="64" y="699" class="micro semibold green">服务器已连接</text>
+    <text x="64" y="716" class="xsmall mono muted">203.0.113.10:47210</text>
+
+    <!-- 主区顶栏：这台机器是谁 + 固定入口 -->
+    <use xlink:href="#mark" href="#mark" x="338" y="86" width="24" height="24"/>
+    <text x="370" y="98" class="small semibold">workstation-mac</text>
+    <text x="371" y="115" class="xsmall mono muted">本机短号  Z9B5 · 5QR4</text>
+    <rect x="968" y="84" width="72" height="30" rx="8" fill="#F3F4F7"/>
+    <text x="1004" y="103" text-anchor="middle" class="micro semibold">日志</text>
+    <rect x="1048" y="84" width="96" height="30" rx="8" fill="#F3F4F7"/>
+    <text x="1096" y="103" text-anchor="middle" class="micro semibold">屏幕权限</text>
+    <path d="M310 126H1172" class="hair"/>
+
+    <!-- 会话横幅：只在真的会话里出现 -->
+    <rect x="338" y="144" width="806" height="48" rx="10" fill="#31C8ED" fill-opacity=".12" stroke="#0A8FBA" stroke-opacity=".35"/>
+    <rect x="339" y="154" width="3" height="28" rx="1.5" fill="#0A8FBA"/>
+    <circle cx="363" cy="168" r="5" fill="none" stroke="#0A8FBA" stroke-width="2.2"/>
+    <text x="382" y="164" class="small semibold">正在控制 studio-mac</text>
+    <text x="382" y="180" class="micro muted">端到端加密会话进行中</text>
+    <rect x="1054" y="154" width="76" height="28" rx="8" fill="#FFFFFF" stroke="#1D1F23" stroke-opacity=".14"/>
+    <text x="1092" y="172" text-anchor="middle" class="micro semibold">断开会话</text>
+
+    <!-- 设备链路面板 -->
+    <text x="338" y="220" class="micro semibold faint" letter-spacing=".9">设备链路</text>
+    <rect x="338" y="234" width="806" height="200" rx="12" fill="#FFFFFF" fill-opacity=".72" stroke="#1D1F23" stroke-opacity=".1"/>
+    <use xlink:href="#markStand" href="#markStand" x="362" y="254" width="44" height="44"/>
+    <text x="424" y="278" font-size="23" font-weight="600">studio-mac</text>
+    <text x="1112" y="276" text-anchor="end" class="micro mono muted">K7G3 · RM28</text>
+    <circle cx="430" cy="312" r="5" fill="none" stroke="#0A8FBA" stroke-width="2"/>
+    <text x="444" y="316" class="micro semibold link">忙</text>
+    <text x="364" y="340" class="small muted">当前状态：忙。状态恢复后可以发起邀请。</text>
+    <path d="M364 354H1118" class="hair"/>
+
+    <!-- 链路条：节点用产品图标里的屏幕造型，连线中间给 leg 文案让位 -->
+    <rect x="364" y="362" width="34" height="24" rx="4" fill="#31C8ED" fill-opacity=".16" stroke="#0A8FBA" stroke-width="1.4"/>
+    <rect x="372" y="378" width="18" height="2.5" rx="1.25" fill="#0A8FBA" opacity=".9"/>
+    <rect x="724" y="362" width="34" height="24" rx="4" fill="#31C8ED" fill-opacity=".16" stroke="#0A8FBA" stroke-width="1.4"/>
+    <rect x="732" y="378" width="18" height="2.5" rx="1.25" fill="#0A8FBA" opacity=".9"/>
+    <rect x="1084" y="362" width="34" height="24" rx="4" fill="#31C8ED" fill-opacity=".16" stroke="#0A8FBA" stroke-width="1.4"/>
+    <rect x="1092" y="378" width="18" height="2.5" rx="1.25" fill="#0A8FBA" opacity=".9"/>
+    <path d="M410 374H521" stroke="#0A8FBA" stroke-opacity=".85" stroke-width="1.4"/>
+    <path d="M601 374H712" stroke="#0A8FBA" stroke-opacity=".85" stroke-width="1.4"/>
+    <path d="M770 374H841" stroke="#0A8FBA" stroke-opacity=".85" stroke-width="1.4"/>
+    <path d="M919 374H1072" stroke="#0A8FBA" stroke-opacity=".85" stroke-width="1.4"/>
+    <text x="561" y="378" text-anchor="middle" font-size="10" font-weight="600" class="link">已连接</text>
+    <text x="880" y="378" text-anchor="middle" font-size="10" font-weight="600" class="link">经服务器</text>
+    <text x="381" y="395" text-anchor="middle" class="xsmall muted">本机</text>
+    <text x="381" y="410" text-anchor="middle" class="xsmall mono">Z9B5 · 5QR4</text>
+    <text x="741" y="395" text-anchor="middle" class="xsmall muted">信令服务器</text>
+    <text x="741" y="410" text-anchor="middle" class="xsmall mono">203.0.113.10</text>
+    <text x="1101" y="395" text-anchor="middle" class="xsmall muted">目标设备</text>
+    <text x="1101" y="410" text-anchor="middle" class="xsmall mono">K7G3 · RM28</text>
+
+    <!-- 主要动作：一个主按钮，其余退后 -->
+    <rect x="338" y="448" width="152" height="34" rx="9" fill="#0A8FBA"/>
+    <text x="414" y="470" text-anchor="middle" class="small semibold white">邀请控制</text>
+    <rect x="524" y="448" width="134" height="34" rx="9" fill="#FFFFFF" stroke="#1D1F23" stroke-opacity=".16"/>
+    <text x="591" y="470" text-anchor="middle" class="small semibold">授权无人值守</text>
+    <rect x="666" y="448" width="96" height="34" rx="9" fill="#FFFFFF" stroke="#1D1F23" stroke-opacity=".16"/>
+    <text x="714" y="470" text-anchor="middle" class="small semibold">撤回授权</text>
+    <rect x="770" y="448" width="96" height="34" rx="9" fill="#FFFFFF" stroke="#1D1F23" stroke-opacity=".16"/>
+    <text x="818" y="470" text-anchor="middle" class="small semibold red">撤销设备</text>
+    <text x="338" y="498" class="micro faint">未授权无人值守：每次连接都要对方在本机点一次允许。</text>
+
+    <!-- 最近动态 -->
+    <text x="338" y="532" class="micro semibold faint" letter-spacing=".9">最近动态</text>
+    <rect x="338" y="546" width="806" height="56" rx="12" fill="#FFFFFF" fill-opacity=".72" stroke="#1D1F23" stroke-opacity=".1"/>
+    <circle cx="364" cy="574" r="4.6" class="green"/>
+    <text x="384" y="570" class="small">已向 studio-mac 发出邀请</text>
+    <text x="384" y="588" class="micro muted">对方在本机点允许后自动打开观看窗口。</text>
+
+    <!-- 底部：显式开关 + 归属，关键动作不放在这里 -->
+    <rect x="338" y="698" width="14" height="14" rx="3.5" fill="#FFFFFF" stroke="#1D1F23" stroke-opacity=".3"/>
+    <text x="360" y="710" class="micro">开机自启</text>
+    <text x="1144" y="710" text-anchor="end" class="xmicro faint">自建信令与中继 · 端到端加密</text>
+  </g>
+
+  <!-- ============ 观看窗口 ============ -->
+  <rect x="28" y="784" width="732" height="460" rx="14" fill="#FFFFFF" filter="url(#shadow)"/>
+  <clipPath id="win2"><rect x="28" y="784" width="732" height="460" rx="14"/></clipPath>
+  <g clip-path="url(#win2)">
+    <rect x="28" y="784" width="732" height="40" fill="#F8F9FB"/>
+    <path d="M28 824H760" class="hair"/>
+    <circle cx="47" cy="804" r="5" fill="#FF615C"/><circle cx="63" cy="804" r="5" fill="#FFBE2E"/><circle cx="79" cy="804" r="5" fill="#28C840"/>
+    <text x="394" y="809" text-anchor="middle" class="micro semibold muted">Jaryn Remote · 远程画面</text>
+    <rect x="28" y="824" width="732" height="44" fill="#FBFBFC"/>
+    <text x="44" y="851" class="micro semibold faint">画质</text>
+    <rect x="78" y="833" width="104" height="26" rx="7" fill="#FFFFFF" stroke="#1D1F23" stroke-opacity=".16"/>
+    <text x="90" y="850" class="micro">均衡</text>
+    <path d="m162 843 5 5 5-5" fill="none" stroke="#98A2B3" stroke-width="1.6"/>
+    <text x="194" y="851" class="micro semibold faint">显示器</text>
+    <rect x="232" y="833" width="150" height="26" rx="7" fill="#FFFFFF" stroke="#1D1F23" stroke-opacity=".16"/>
+    <text x="244" y="850" class="micro">内建 Retina 显示器</text>
+    <path d="m360 843 5 5 5-5" fill="none" stroke="#98A2B3" stroke-width="1.6"/>
+    <text x="628" y="850" text-anchor="end" class="micro muted">端到端加密会话</text>
+    <rect x="640" y="833" width="76" height="26" rx="7" fill="#FFFFFF" stroke="#1D1F23" stroke-opacity=".16"/>
+    <text x="678" y="850" text-anchor="middle" class="micro semibold">断开</text>
+    <path d="M28 868H760" class="hair"/>
+    <rect x="28" y="868" width="732" height="376" fill="#0B0B0C"/>
+    <text x="394" y="1060" text-anchor="middle" class="small white" opacity=".42">等待远端画面…</text>
+  </g>
+  <text x="28" y="1266" class="micro muted">观看窗口：画质与显示器在左，加密说明与断开在右；还没有画面时明确说明在等，不给一块纯黑。</text>
+
+  <!-- ============ 软件遮挡层 ============ -->
+  <rect x="784" y="784" width="388" height="460" rx="14" fill="#0B1738"/>
+  <rect x="954" y="940" width="48" height="4" rx="2" fill="#31C8ED"/>
+  <text x="978" y="1002" text-anchor="middle" font-size="26" font-weight="600" class="white">正在被远控</text>
+  <text x="978" y="1042" text-anchor="middle" font-size="13" class="white" opacity=".72">屏幕内容已遮挡。这是软件遮挡，</text>
+  <text x="978" y="1064" text-anchor="middle" font-size="13" class="white" opacity=".72">不是硬件隐私屏：它挡不住截图或录屏。</text>
+  <text x="978" y="1196" text-anchor="middle" class="micro semibold white" opacity=".42">Jaryn Remote</text>
+  <text x="784" y="1266" class="micro muted">软件遮挡层：品牌深蓝而不是纯黑，并且如实写明这不是硬件隐私屏。</text>
+</svg>

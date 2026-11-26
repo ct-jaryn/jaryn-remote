@@ -1,0 +1,16 @@
+[package]
+name = "jr-signal"
+description = "Self-hosted TLS signaling, presence, closed pairing, and audit server"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[dependencies]
+jr-crypto = { path = "../../crates/jr-crypto" }
+jr-proto = { path = "../../crates/jr-proto" }
+rcgen = "0.13"
+rusqlite = { version = "0.32", features = ["bundled"] }
+rustls = { version = "0.23", default-features = false, features = ["ring", "std", "tls12"] }
+tokio = { version = "1", features = ["macros", "net", "io-util", "rt-multi-thread", "signal", "sync", "time"] }
+tokio-rustls = { version = "0.26", default-features = false, features = ["logging", "tls12", "ring"] }

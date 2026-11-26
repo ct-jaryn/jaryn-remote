@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">Jaryn Remote</title>
+  <desc id="desc">深蓝圆角方形内有两块相连的屏幕，前方屏幕里是一笔青绿色的 J。</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0B1738"/>
+      <stop offset="1" stop-color="#213B82"/>
+    </linearGradient>
+    <linearGradient id="link" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#79F7DF"/>
+      <stop offset="1" stop-color="#31C8ED"/>
+    </linearGradient>
+  </defs>
+  <rect x="32" y="32" width="960" height="960" rx="224" fill="url(#background)"/>
+  <rect x="174" y="332" width="514" height="352" rx="72" fill="#29447F" stroke="#7288E4" stroke-width="34"/>
+  <rect x="286" y="246" width="562" height="412" rx="74" fill="#122956" stroke="#F7FAFF" stroke-width="42"/>
+  <path d="M486 386 H650 V493 C650 564 600 602 535 602 C493 602 457 584 438 556" fill="none" stroke="url(#link)" stroke-width="60" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M568 680 V740 M468 758 H668" fill="none" stroke="#F7FAFF" stroke-width="46" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,11 @@
+[package]
+name = "jr-transport"
+description = "UDP transport, ARQ reliability, XOR FEC, and JCC congestion control"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[dependencies]
+jr-crypto = { path = "../jr-crypto" }
+jr-proto = { path = "../jr-proto" }

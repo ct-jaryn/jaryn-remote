@@ -1,0 +1,19 @@
+name: 功能建议 (Feature Request)
+description: 在项目产品边界（docs/01-product.md）内提出改进或平台适配建议
+title: "[Feat]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: 使用场景与问题
+      description: 你在自托管个人设备舰队远控中遇到了什么具体痛点？
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 期望方案
+      description: 建议的交互、协议或平台适配行为（请先确认不违背 docs/01-product.md 的「明确不做」列表）
+    validations:
+      required: true

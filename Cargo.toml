@@ -1,0 +1,21 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/jr-proto",
+    "crates/jr-crypto",
+    "crates/jr-transport",
+    "crates/jr-session",
+    "crates/jr-input",
+    "crates/jr-host-win",
+    "apps/signal",
+    "apps/relay",
+    "apps/node",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/ct-jaryn/jaryn-remote"
+readme = "README.md"
+publish = false
